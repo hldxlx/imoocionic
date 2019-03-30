@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController, LoadingController, ToastController} from 'ionic-angular';
+import { NavController, NavParams, ViewController, LoadingController, ToastController} from 'ionic-angular';
 import {BaseUI} from "../../common/baseui";
 import {RestProvider} from "../../providers/rest/rest";
 import {Storage} from "@ionic/storage";
@@ -10,7 +10,6 @@ import {Storage} from "@ionic/storage";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -27,12 +26,13 @@ export class LoginPage extends BaseUI{
               public toastCtrl:ToastController,
               public storage:Storage
   ) {
-    super();
+    super();//调用父类的构造函数 constructor
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+  //关闭当前页面的方法
   dismiss(){
     this.viewCtrl.dismiss();
   }

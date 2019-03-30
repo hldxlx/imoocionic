@@ -32,6 +32,7 @@ export class RestProvider {
   private apiUrlGetQuestion = "https://imoocqa.gugujiankong.com/api/question/get";
   private apiUrlAnswer = "https://imoocqa.gugujiankong.com/api/question/answer";
 
+  //根据用户的手机号码和密码进行登录
   login(mobile,password):Observable<string[]>{
     return this.getUrlReturn(this.apiUrlLogin+"?mobile="+mobile+"&password="+password);
   }
@@ -50,11 +51,13 @@ export class RestProvider {
       .catch(this.handleError);
   }
 
+  //处理接口返回的数据，处理成json格式
   private extractData(res: Response) {
     let body = res.json();
     return JSON.parse(body) || {};
   }
 
+  //处理请求中的错误，考虑了各种情况的错误处理并在console中显示
   private handleError(error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {
