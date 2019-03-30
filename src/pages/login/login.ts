@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController, LoadingController, ToastController} from 'ionic-angular';
 import {BaseUI} from "../../common/baseui";
 import {RestProvider} from "../../providers/rest/rest";
+import {Storage} from "@ionic/storage";
 /**
  * Generated class for the LoginPage page.
  *
@@ -23,7 +24,8 @@ export class LoginPage extends BaseUI{
               public viewCtrl:ViewController,
               public loadingCtrl: LoadingController,
               public rest:RestProvider,
-              public toastCtrl:ToastController
+              public toastCtrl:ToastController,
+              public storage:Storage
   ) {
     super();
   }
@@ -41,6 +43,10 @@ export class LoginPage extends BaseUI{
         f=>{//回来的东西就是f，通过箭头函数把f传递过来
           if(f["Status"]=="OK"){//判断返回过来的东西
             //处理登录成功的页面跳转
+            //你也可以存储接口返回的 token
+            this.storage.set('UserId',f["UserId"]);
+            loading.dismiss();
+            this.dismiss();
           }else{
             loading.dismiss();
             super.showToast(this.toastCtrl,f["StatusContent"]);

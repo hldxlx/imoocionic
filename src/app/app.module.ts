@@ -15,7 +15,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RestProvider } from '../providers/rest/rest';
-
+import {IonicStorageModule} from '@ionic/storage';
 @NgModule({
   declarations: [
     MyApp,
@@ -30,7 +30,8 @@ import { RestProvider } from '../providers/rest/rest';
   imports: [
     BrowserModule,
     HttpModule,//全局需要导入 HTTP
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
